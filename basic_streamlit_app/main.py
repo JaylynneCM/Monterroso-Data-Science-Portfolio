@@ -250,7 +250,6 @@ with tab_behavior:
     else:
         st.write("Click the button to view a summary of overall consumer insights.")
 
-
 # -------------------------------------------------------------------
 # Tab 3: Payment Method
 # -------------------------------------------------------------------

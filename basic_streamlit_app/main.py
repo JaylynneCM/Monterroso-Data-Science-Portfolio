@@ -26,10 +26,32 @@ There are various interactive filters to understand similarities and
 differences based on region, spending category and payment methods to name a few.
 """
 )
-# -------------------------------------------------------------------
-#  FILTERS
-# -------------------------------------------------------------------
 
+# -------------------------------------------------------------------
+# FOOTER WITH SOCIAL ICONS
+# -------------------------------------------------------------------
+st.markdown(
+    """
+    <div class="footer">
+        <div>
+            Built by <strong>Jaylynne Calderon Monterroso</strong> <br/>
+            This dashboard is powered by a online sales dataset saved to
+            <code>data/Online_Sales_Data.csv</code>.
+        </div>
+        <br/>
+        <div>
+            <a href="https://www.linkedin.com/in/jaylynne-calderon-monterroso-221001210/" target="_blank">
+                <span class="social-icon">⭐</span>LinkedIn
+            </a>
+            <br/>
+            <a href="https://github.com/JaylynneCM" target="_blank">
+                <span class="social-icon">⭐</span>GitHub
+            </a>
+        </div>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 
 ## TABS
 tab_data, tab_behavior, tab_payment = st.tabs(

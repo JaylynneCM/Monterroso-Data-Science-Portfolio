@@ -11,10 +11,11 @@ I created an interactive streamlit app for exploring consumer behavior in an onl
 - Identify key insights summarizing overall consumer behavior
 
 ## Structure:
-I organized the app in three tabs with different purposes.
+I organized the app in three tabs with different purposes and visualizations.
 
-*🔍 Dataset Exploration
-*🛒 Customer Purchasing Behavior
-*💳 Payment Method Insights
+* 🔍 Dataset Exploration
+* 🛒 Customer Purchasing Behavior
+* 💳 Payment Method Insights
+
 ## How to Use:
 streamlit run basic_streamlit_app/main.py

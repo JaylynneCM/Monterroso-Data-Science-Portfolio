@@ -229,5 +229,9 @@ with tab_behavior:
         st.write("Click the button to view a summary of overall consumer insights.")
 
 
-
+# -------------------------------------------------------------------
+# Tab 3: Payment Method
+# -------------------------------------------------------------------
+with tab_payment:
+   st.subheader("Payment Method Distribution")
 

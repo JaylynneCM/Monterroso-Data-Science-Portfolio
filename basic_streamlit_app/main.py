@@ -257,3 +257,16 @@ with tab_behavior:
 with tab_payment:
    st.subheader("Payment Method Distribution")
 
+# Bar chart of Revenue by Region
+   plt.figure(figsize= (10,2))
+   plt.subplot(1,2,1)
+   regional_sales =df.groupby('Region')['Total Revenue'].sum().reset_index()
+   plt.bar(regional_sales['Region'],
+           regional_sales['Total Revenue'],
+             width = 0.4
+   )
+#Refining chart of revenue by region
+   plt.title("Regional Sales")
+   plt.xlabel("Regions")
+   plt.ylabel("Revenue")
+   st.pyplot(plt)

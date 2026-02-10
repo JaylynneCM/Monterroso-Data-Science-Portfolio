@@ -256,7 +256,7 @@ with tab_behavior:
 with tab_payment:
    # Created a pie chart of payment distribution
    st.subheader("Payment Method Distribution")
-   fig, ax = plt.subplots()
+   fig3, ax = plt.subplots()
    payment_counts = df["Payment Method"].value_counts()
    colors = plt.get_cmap("Pastel1").colors
    payment_counts.plot(
@@ -268,4 +268,70 @@ with tab_payment:
    # modified for appearance
    ax.set_ylabel("")  
    ax.set_title("Payment Method Distribution")
-   st.pyplot(fig)
+   st.pyplot(fig3)
+   plt.close(fig3)
+
+   # Interactive chart of Day of the week by payment method
+
+   #structured numerical date to day of week
+   df['year'] = df['Date'].dt.year
+   df['month'] = df['Date'].dt.month
+   df['day'] = df['Date'].dt.day
+   df['day_name'] = df['Date'].dt.day_name()
+
+   # Chronologically ordered days
+   week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+
+   #Grouped units sold by the day
+   df_grouped = df.groupby(['day_name'])["Units Sold"].sum().reset_index()
+   df_grouped.set_index(['day_name'], inplace=True)
+
+    # Group by day and payment method
+   df_grouped = df.groupby(['day_name',"Payment Method"])["Units Sold"].sum().reset_index()
+   df_grouped["day_name"] = pd.Categorical(df_grouped["day_name"], categories=week, ordered=True)
+   # Plotted bar chart chose seaborn to show all payments in one graph
+   import seaborn as sns 
+
+   # Created drop down box for filter
+   payment_choice = st.selectbox(
+    "Filter for one payment method by day of week",
+    ["All Payment Methods"] + sorted(df["Payment Method"].unique().tolist()),
+    key="pay_method_day_filter"
+    )
+   #Created vis based on filter selection through if else statement
+
+   if payment_choice == "All Payment Methods":    
+       fig4, ax4 = plt.subplots(figsize=(12, 6))
+       sns.barplot(
+            data=df_grouped,
+            x="day_name",
+            y="Units Sold",
+            hue="Payment Method",
+            palette=["#5072D1", "#FC8A8A", "#6EC298"],
+            edgecolor="black"
+            )
+       plt.title('Units Sold by Payment Method and Day of the Week')
+       plt.xlabel(' Day of Week')
+       plt.ylabel('Units Sold')
+       plt.legend(title='Payment Method')
+       plt.tight_layout() 
+       st.pyplot(fig4)
+       plt.close(fig4)
+
+   else:
+           fig5, ax5 = plt.subplots(figsize=(12, 6))
+           filtered = df_grouped[df_grouped["Payment Method"] == payment_choice]
+           sns.barplot(
+                data=filtered,
+                x="day_name",
+                y="Units Sold",
+                edgecolor="black",
+                ax=ax5
+                )
+           plt.xlabel(' Day of Week')
+           plt.ylabel('Units Sold')
+           plt.legend(title='Payment Method')
+           plt.tight_layout() 
+           st.pyplot(fig5)
+           plt.close(fig5)
+           

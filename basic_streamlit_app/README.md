@@ -17,9 +17,9 @@ I organized the app in three tabs with different purposes and visualizations.
 * 💳 Payment Method Insights (Understand Payment methods utilized based on Region and Product category)
 
 I used:
-Streamlit: For the interactive interface.
-Pandas: For data manipulation and filtering.
-Matplotlib & Seaborn: For creating data visualizations and charts.
+* Streamlit: For the interactive interface.
+* Pandas: For data manipulation and filtering.
+* Matplotlib & Seaborn: For creating data visualizations and charts.
 
 ## How to Use:
 * Install streamlit 

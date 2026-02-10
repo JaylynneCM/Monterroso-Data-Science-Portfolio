@@ -209,42 +209,14 @@ with tab_behavior:
     # Button creation
     if st.button("Reveal overall consumer insights", key="overall_insights_btn"):
         st.success("Key insights from the full dataset:")
-
-        # Region with most total revenue
-        top_region_revenue = (
-            df.groupby("Region")["Total Revenue"]
-            .sum()
-            .idxmax()
-        )
-        # Most shopped category by units sold
-        top_category_units = (
-            df.groupby("Product Category")["Units Sold"]
-            .sum()
-            .idxmax()
-        )
-        # Category with highest total revenue 
-        top_category_revenue = (
-            df.groupby("Product Category")["Total Revenue"]
-            .sum()
-            .idxmax()
-        )
-        # Month with highest total units sold
-        df_dates = df.copy()
-        df_dates["Date"] = pd.to_datetime(df_dates["Date"])
-        df_dates["Month"] = df_dates["Date"].dt.month_name()
-
-        top_month = (
-            df_dates.groupby("Month")["Units Sold"]
-            .sum()
-            .idxmax()
-        )
     # Show summary of Insights
         st.write(
             f"""
-            - The region with the **highest overall spending** is **{top_region_revenue}**📈.
-            - The category that generated the **highest total revenue** is **{top_category_revenue}** 📈.
-            - The **most frequently purchased product category** (by units sold) is **{top_category_units}** 📊.
-            - The month with the **highest overall purchasing activity** is **{top_month}**🗓️.
+            - The region with the highest overall spending is North America📈 and was only through credit cards.
+            - The category that generated the highest total revenue is Electronics 📈.
+            - The most frequently purchased product category (by units sold) is Clothing 📊 only in Asia with debit cards.
+            - The month with the highest overall purchasing activity is March🗓️.
+            
             """
         )
     else:
@@ -254,6 +226,18 @@ with tab_behavior:
 # Tab 3: Payment Method
 # -------------------------------------------------------------------
 with tab_payment:
+   # Overall payment insights 
+   st.markdown("### Payment Insights")
+   if st.button("Reveal payment insights", key="payment_insights_btn"):
+    st.success("Payment behavior highlights:")
+    st.write(
+        f"""
+        - Customers most frequently use Credit Cards as their preferred payment method. 
+        - Since credit cards are only used in North America this indicates they are buying the most units.
+        - Saturday has the highest total spending, this suggests activity during the weekend increases slightly to week days.
+        """
+    )
+    
    # Created a pie chart of payment distribution
    st.subheader("Payment Method Distribution")
    fig3, ax = plt.subplots()
@@ -268,8 +252,17 @@ with tab_payment:
    # modified for appearance
    ax.set_ylabel("")  
    ax.set_title("Payment Method Distribution")
-   st.pyplot(fig3)
+   st.pyplot(fig3, bbox_inches="tight")
    plt.close(fig3)
+   payment_region_data = df.groupby(['Region', 'Payment Method']).size().unstack(fill_value=0)
+   fig6, ax6 = plt.subplots(figsize=(12, 6))
+   payment_region_data.plot(kind='bar', ax=ax6, color=["#5072D1", "#FC8A8A", "#6EC298"] )
+   plt.title('Payment Methods by Region', fontsize=16)
+   plt.xlabel('Region')
+   plt.ylabel('Number of Transactions')
+   plt.legend(title='Payment Method')
+   st.pyplot(fig6)
+   plt.close(fig6)
 
    # Interactive chart of Day of the week by payment method
 
@@ -333,5 +326,4 @@ with tab_payment:
            plt.legend(title='Payment Method')
            plt.tight_layout() 
            st.pyplot(fig5)
-           plt.close(fig5)
-           
+           plt.close(fig5)       

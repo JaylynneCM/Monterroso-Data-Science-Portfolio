@@ -254,18 +254,18 @@ with tab_behavior:
 # Tab 3: Payment Method
 # -------------------------------------------------------------------
 with tab_payment:
+   # Created a pie chart of payment distribution
    st.subheader("Payment Method Distribution")
-
-# Bar chart of Revenue by Region
-   plt.figure(figsize= (10,2))
-   plt.subplot(1,2,1)
-   regional_sales =df.groupby('Region')['Total Revenue'].sum().reset_index()
-   plt.bar(regional_sales['Region'],
-           regional_sales['Total Revenue'],
-             width = 0.4
-   )
-#Refining chart of revenue by region
-   plt.title("Regional Sales")
-   plt.xlabel("Regions")
-   plt.ylabel("Revenue")
-   st.pyplot(plt)
+   fig, ax = plt.subplots()
+   payment_counts = df["Payment Method"].value_counts()
+   colors = plt.get_cmap("Pastel1").colors
+   payment_counts.plot(
+            kind="pie",
+                    autopct="%1.1f%%",
+                            colors=colors[:len(payment_counts)],
+                                    ax=ax
+                                    )
+   # modified for appearance
+   ax.set_ylabel("")  
+   ax.set_title("Payment Method Distribution")
+   st.pyplot(fig)

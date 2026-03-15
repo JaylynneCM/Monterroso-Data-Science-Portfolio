@@ -326,4 +326,4 @@ with tab_payment:
            plt.legend(title='Payment Method')
            plt.tight_layout() 
            st.pyplot(fig5)
-           plt.close(fig5)       
+     

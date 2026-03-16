@@ -12,10 +12,15 @@ I created an interactive streamlit app for exploring consumer behavior in an onl
 
 ## Structure:
 I organized the app in three tabs with different purposes and visualizations.
+* 🔍 Dataset Exploration (To get an understanding of the dataset)
+* 🛒 Customer Purchasing Behavior (Understand customer Regional insights)
+* 💳 Payment Method Insights (Understand Payment methods utilized based on Region and Product category)
 
-* 🔍 Dataset Exploration
-* 🛒 Customer Purchasing Behavior
-* 💳 Payment Method Insights
+I used:
+* Streamlit: For the interactive interface.
+* Pandas: For data manipulation and filtering.
+* Matplotlib & Seaborn: For creating data visualizations and charts.
 
 ## How to Use:
+* Install streamlit 
 streamlit run basic_streamlit_app/main.py

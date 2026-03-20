@@ -51,7 +51,7 @@ import matplotlib.pyplot as plt
 This Dataset is adapted from https://edjnet.github.io/OlympicsGoNUTS/2008/
 - Get to know the initial data through df.head() df.describe()
 
-# Visualization Examples from Project📊: 
+# Visualization Examples from my Project📊: 
 
 <img width="265" height="209" alt="Screenshot 2026-03-20 at 1 18 24 PM" src="https://github.com/user-attachments/assets/e7195b7e-45f1-4213-8ed6-6d0d9dcddb09" />
 

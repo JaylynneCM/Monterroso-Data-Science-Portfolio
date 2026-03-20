@@ -51,6 +51,32 @@ import matplotlib.pyplot as plt
 This Dataset is adapted from https://edjnet.github.io/OlympicsGoNUTS/2008/
 - Get to know the initial data through df.head() df.describe()
 
+  Steps to tidy data before creating visualizations:
+  
+Step 1: Identifying the wide format of the dataset
+
+Step 2: Melting 71 columns into a long format pd.melt()
+
+Step 3: Splitting the Gender_Sport column into two distinct variables st.split()
+
+Step 4: Filtering out NaN values .dropna()
+
+New data frame should look like this:
+```
+            medalist_name   Medal Gender                  Sport
+0            Bair Badënov  bronze   male                archery
+1           Ilario Di Buò  silver   male                archery
+2            Im Dong-hyun    gold   male                archery
+3               Jiang Lin  bronze   male                archery
+4          Lee Chang-hwan    gold   male                archery
+...                   ...     ...    ...                    ...
+1870        Steeve Guénot    gold   male  greco-roman wrestling
+1871  Yannick Szczepaniak  bronze   male  greco-roman wrestling
+1872       Yavor Yanakiev  bronze   male  greco-roman wrestling
+1873      Yury Patrikeyev  bronze   male  greco-roman wrestling
+1874         Zoltán Fodor  silver   male  greco-roman wrestling
+```
+for more step by step guidance see the notebook.
 # Visualization Examples from my Project📊: 
 
 <img width="265" height="209" alt="Screenshot 2026-03-20 at 1 18 24 PM" src="https://github.com/user-attachments/assets/e7195b7e-45f1-4213-8ed6-6d0d9dcddb09" />

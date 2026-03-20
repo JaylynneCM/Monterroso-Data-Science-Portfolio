@@ -44,4 +44,11 @@ Get to know the initial data through df.head() df.describe() etc.
 - [Visualization Choices](https://www.data-to-viz.com/)
 - [Visualization Colors](https://xkcd.com/color/rgb/)
 ### Visual Examples: 
-Consider adding screenshots of your visualizations or code snippets
+
+<img width="265" height="209" alt="Screenshot 2026-03-20 at 1 18 24 PM" src="https://github.com/user-attachments/assets/e7195b7e-45f1-4213-8ed6-6d0d9dcddb09" />
+
+This visualization provides an analysis of medal distributions between male and female athletes, focusing on the five sports with the most medals awarded in the 2008 Olympic Games.
+
+ <img width="266" height="209" alt="Screenshot 2026-03-20 at 1 16 59 PM" src="https://github.com/user-attachments/assets/d72ccb1a-9bba-4a00-9119-f9dccc200b36" />
+ 
+This visualization shows the distribution of Olympic medals across genders, further categorized by medal tier (Gold, Silver, and Bronze).

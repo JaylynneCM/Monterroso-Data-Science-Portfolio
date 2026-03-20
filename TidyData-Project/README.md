@@ -56,10 +56,14 @@ This Dataset is adapted from https://edjnet.github.io/OlympicsGoNUTS/2008/
 <img width="265" height="209" alt="Screenshot 2026-03-20 at 1 18 24 PM" src="https://github.com/user-attachments/assets/e7195b7e-45f1-4213-8ed6-6d0d9dcddb09" />
 
 This visualization provides an analysis of medal distributions between male and female athletes, focusing on the five sports with the most medals awarded in the 2008 Olympic Games.
+- Here we see men are awarded more medals overall in these 5 sports sections.
+- There is a notably larger gap in male and female medalists in Rowing
 
  <img width="266" height="209" alt="Screenshot 2026-03-20 at 1 16 59 PM" src="https://github.com/user-attachments/assets/d72ccb1a-9bba-4a00-9119-f9dccc200b36" />
  
 This visualization shows the distribution of Olympic medals across genders, further categorized by medal tier (Gold, Silver, and Bronze).
+- We see a descending order where bronze medals are awarded the most and Gold the least.
+- In all combined sports Males were awarded more medals across all three tiers compared to women.
 
 # References: 
 - [Tidy Data Cheat Sheet (PDF)](https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf)

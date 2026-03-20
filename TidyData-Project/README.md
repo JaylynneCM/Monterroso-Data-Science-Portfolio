@@ -17,7 +17,8 @@ To run this project follow these steps:
 
 2. Install libraries used in the notebook:
 
-``` # Data handling
+``` 
+# Data handling
 import pandas as pd  
 # Import 2008 Olypics dataset from a CSV file into a pandas DataFrame.
 df = pd.read_csv('olympics_08_medalists.csv')
@@ -27,7 +28,8 @@ print(df.head())
 import seaborn as sns     
 
 # Plotting library for custom graphs 
-import matplotlib.pyplot as plt ```   
+import matplotlib.pyplot as plt 
+```   
 
 
 3. Run the Notebook: Open Tidy_Data_Notebook.ipynb and execute the cells in order.

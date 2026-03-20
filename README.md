@@ -16,6 +16,7 @@ I developed an interactive web application designed to analyze and visualize con
 Key Features:
 - Dataset Exploration: Interactive data profiling to understand underlying distributions.
 - Regional Analytics: Comparative visualizations of customer purchasing power across different geographic zones.
+  This project complements my coding skills by showing applied, user-facing data skills, and visualization skills. While my Tidy data project shows my ability to restructure and analyze data before it faces users and is used for visualization.
 
 ## 📊 [Tidy Data Analysis: 2008 Olympic Medalists](https://github.com/JaylynneCM/Monterroso-Data-Science-Portfolio/tree/main/TidyData-Project)
 Tech Stack: Python, Pandas, Seaborn, Matplotlib

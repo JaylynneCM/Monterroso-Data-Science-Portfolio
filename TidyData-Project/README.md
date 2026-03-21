@@ -67,7 +67,7 @@ Steps to tidy data before creating visualizations:
 
  2: Melting 71 columns into a long format pd.melt()
 
- 3: Splitting the Gender_Sport column into two distinct variables st.split()
+ 3: Splitting the Gender_Sport column into two distinct variables str.split()
 
  4: Filtering out NaN values .dropna()
 

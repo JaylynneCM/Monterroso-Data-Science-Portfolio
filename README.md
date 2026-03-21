@@ -24,7 +24,7 @@ Summary:
 Tech Stack: Python, Pandas, Seaborn, Matplotlib
 
 🎖️Project Overview🎖️:
-This project focuses on the "Data Cleaning" aspect of the data science. I transformed an "untidy" wide-format dataset containing 71 columns of Olympic medal data into a "tidy" long-format structure. By applying Hadley Wickham’s Tidy Data principles, I restructured 1,875 medalist observations which then allowed me to create a neat exploratory data analysis.
+This project focuses on the "Data Cleaning" aspect of the data science. I transformed an "untidy" wide-format dataset containing 71 columns of Olympic medal data into a "tidy" long-format structure. By applying Hadley Wickham’s Tidy data principles, I restructured 1,875 medalist observations which then allowed me to create a neat exploratory data analysis.
 
 ⭐️ Key Features: 
 - Data reshaping with pd.melt()
@@ -32,4 +32,4 @@ This project focuses on the "Data Cleaning" aspect of the data science. I transf
 - Data visualization (count plot, stacked bar chart, pivot table)
   
 Summary:
-- This project demonstrates my ability to handle structural data issues, such as sparse variables. Along with strengthening my skills to reshape data and create visualizations that clearly communicate a data's story. This project complements my coding skills by having a nuanced understanding of the data cycle, from "untidy" data to polished visualization. This will continously build on my coding skills to apply these tidy principles and analysis in future projects for neat and clear code.
+- This project demonstrates my ability to handle structural data issues, such as sparse variables. Along with strengthening my skills to reshape data and create visualizations that clearly communicate a data's story. This project complements my coding skills by having a nuanced understanding of the data cycle, from "untidy" data to polished visualization. This will continuously build on my coding skills to apply these tidy principles and analysis in future projects for neat and clear code.

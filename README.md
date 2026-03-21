@@ -18,13 +18,13 @@ I developed an interactive web application designed to analyze and visualize con
 - Regional Analytics: Comparative visualizations of customer purchasing power across different geographic zones.
   
 Summary: 
-- This project complements my coding skills by showing applied, user-facing data skills, and visualization skills. While my Tidy data project shows my ability to restructure and analyze data before it faces users and is used for visualization.
+- This project complements my coding skills by showing applied, user-facing data skills, and visualization skills. While my Tidy Data project shows my ability to restructure and analyze data before it faces users and is used for visualization.
 
 ## 📊 [Tidy Data Analysis: 2008 Olympic Medalists](https://github.com/JaylynneCM/Monterroso-Data-Science-Portfolio/tree/main/TidyData-Project)
 Tech Stack: Python, Pandas, Seaborn, Matplotlib
 
 🎖️Project Overview🎖️:
-This project focuses on the "Data Cleaning" aspect of the data science. I transformed an "untidy" wide-format dataset containing 71 columns of Olympic medal data into a "tidy" long-format structure. By applying Hadley Wickham’s Tidy data principles, I restructured 1,875 medalist observations which then allowed me to create a neat exploratory data analysis.
+This project focuses on the "Data Cleaning" aspect of the data science. I transformed an "untidy" wide-format dataset containing 71 columns of Olympic medal data into a "tidy" long-format structure. By applying Hadley Wickham’s Tidy Data principles, I restructured 1,875 medalist observations which then allowed me to create a neat exploratory data analysis.
 
 ⭐️ Key Features: 
 - Data reshaping with pd.melt()

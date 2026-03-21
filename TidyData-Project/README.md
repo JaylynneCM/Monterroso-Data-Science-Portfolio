@@ -63,13 +63,13 @@ This Dataset is adapted from https://edjnet.github.io/OlympicsGoNUTS/2008/
 
 Steps to tidy data before creating visualizations:
   
-Step 1: Identifying the wide format of the dataset familiarize yourself with the data using df.head() df.describe()
+ 1: Identifying the wide format of the dataset familiarize yourself with the data using df.head() df.describe()
 
-Step 2: Melting 71 columns into a long format pd.melt()
+ 2: Melting 71 columns into a long format pd.melt()
 
-Step 3: Splitting the Gender_Sport column into two distinct variables st.split()
+ 3: Splitting the Gender_Sport column into two distinct variables st.split()
 
-Step 4: Filtering out NaN values .dropna()
+ 4: Filtering out NaN values .dropna()
 
 New data frame should look like this:
 ```

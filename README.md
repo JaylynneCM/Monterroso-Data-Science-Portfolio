@@ -24,7 +24,7 @@ Summary:
 Tech Stack: Python, Pandas, Seaborn, Matplotlib
 
 🎖️Project Overview🎖️:
-This project focuses on the "Data Cleaning" aspect of the data science. I transformed an "untidy" wide-format dataset containing 71 columns of Olympic medal data into a "tidy" long-format structure. By applying Hadley Wickham’s Tidy Data principles, I restructured 1,875 medalist observations which then allowed me to create a neat exploratory data analysis.
+This project focuses on the "Data Cleaning" aspect of data science. I transformed an "untidy" wide-format dataset containing 71 columns of Olympic medal data into a "tidy" long-format structure. By applying Hadley Wickham’s Tidy Data principles, I restructured 1,875 medalist observations which then allowed me to create a neat exploratory data analysis.
 
 ⭐️ Key Features: 
 - Data reshaping with pd.melt()

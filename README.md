@@ -1,7 +1,7 @@
 # Monterroso-Data-Science-Portfolio
 🤗 Code and projects for Introduction to Data Science 🤗
 
-Projects are organized within folders of:
+⭐️ Projects consist of :
   - EDA
   - Visualizations
   - Models
@@ -13,7 +13,7 @@ Tech Stack: Python, Streamlit, Pandas, Matplotlib, Seaborn
 Project Overview:
 I developed an interactive web application designed to analyze and visualize consumer behavior within a global online sales dataset. The app features a multi-tab interface that allows users to dynamically filter data by Region, Payment Method, and Product Category to understand purchasing trends.
 
-Key Features:
+⭐️ Key Features:
 - Dataset Exploration: Interactive data profiling to understand underlying distributions.
 - Regional Analytics: Comparative visualizations of customer purchasing power across different geographic zones.
   
@@ -26,7 +26,7 @@ Tech Stack: Python, Pandas, Seaborn, Matplotlib
 🎖️Project Overview🎖️:
 This project focuses on the "Data Cleaning" aspect of the data science. I transformed an "untidy" wide-format dataset containing 71 columns of Olympic medal data into a "tidy" long-format structure. By applying Hadley Wickham’s Tidy Data principles, I restructured 1,875 medalist observations which then allowed me to create a neat exploratory data analysis.
 
-Key Features: 
+⭐️ Key Features: 
 - Data reshaping with pd.melt()
 - String manipulation and splitting columns
 - Data visualization (count plot, stacked bar chart, pivot table)

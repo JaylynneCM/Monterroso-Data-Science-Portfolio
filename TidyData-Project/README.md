@@ -14,22 +14,33 @@ The dataset I am using contains records of 2008 Olympic medalists, but it is str
 
 ### The primary objective of this project is divided into two key goals:
 
-- 🥇First Goal: To take an "untidy" dataset and apply Tidy Data Principles.
-The tidy data principles are, each variable should have its own column, each observation should have its own row, and each type of unit should form a table. In this project, we addressed specific problems to create a tidy dataset:
-    - Multiple variables are stored in one column: Even after melting, "Gender" and "Sport" were combined. I then split these to ensure each variable forms a column
+## - 🥇First Goal: To take an "untidy" dataset and apply Tidy Data Principles.
+The tidy data principles are, each variable should have its own column, each observation should have its own row, and each type of unit should form a table.
+The tidy data principles focus on three aspects needed for data analysis and exploration:
+ - Each variable must have its own column
+ - Each observation must have its own row
+ - Each cell only contains one value
+   
+For more info on Tidy Data Principles see references.
 
-    - Each observation forms a row: I reshaped the data so that every row represents a single observational unit—in here it is an individual medal win.
+ I addressed these specific problems to create a tidy dataset:
+ - Multiple variables are stored in one column: Even after melting, "Gender" and "Sport" were combined. I then split these to ensure each variable forms a column.
+ -  Each observation forms a row: I reshaped the data so that every row represents a single observational unit (here it is an individual medal win).
 
-- 🥈Second Goal: To take the tidy dataset and perform an Exploratory Data Analysis (EDA)
-By now using the Tidy data I now have a structured data set to explore and generate visualizations and summary statistics (such as the distribution of medals by gender) without complex filtering or steps in the original data set. This allows us to cleanly communicate the data's story and its features.
+## - 🥈Second Goal: To take the tidy dataset and perform an Exploratory Data Analysis (EDA)
+By now using the tidy data I now have a structured data set to explore and generate visualizations and summary statistics (such as the distribution of medals by gender) without complex filtering or steps in the original data set. This allows us to cleanly communicate the data's story and its features.
 
 # Instructions📋: 
-To run this project follow these steps:
+To run this project follow these steps using python:
 
 1. Download the Dataset: Ensure olympics_08_medalists.csv is in your project directory.
 
 2. Install libraries used in the notebook:
+- Pandas
+- Seaborn
+- Matplotlib
 
+Here is my code snippet: 
 ``` 
 # Data handling
 import pandas as pd  
@@ -49,11 +60,10 @@ import matplotlib.pyplot as plt
 
 # Dataset Description📈: 
 This Dataset is adapted from https://edjnet.github.io/OlympicsGoNUTS/2008/
-- Get to know the initial data through df.head() df.describe()
 
-  Steps to tidy data before creating visualizations:
+Steps to tidy data before creating visualizations:
   
-Step 1: Identifying the wide format of the dataset
+Step 1: Identifying the wide format of the dataset familiarize yourself with the data using df.head() df.describe()
 
 Step 2: Melting 71 columns into a long format pd.melt()
 
@@ -77,6 +87,8 @@ New data frame should look like this:
 1874         Zoltán Fodor  silver   male  greco-roman wrestling
 ```
 for more step by step guidance see the notebook.
+Then I utilized the new formatted Tidy Data for an EDA.
+
 # Visualization Examples from my Project📊: 
 
 <img width="265" height="209" alt="Screenshot 2026-03-20 at 1 18 24 PM" src="https://github.com/user-attachments/assets/e7195b7e-45f1-4213-8ed6-6d0d9dcddb09" />

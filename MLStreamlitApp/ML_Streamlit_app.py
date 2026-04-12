@@ -1,5 +1,36 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
 st.set_page_config(page_title="ML Exploration", layout="wide")
 st.title("Welcome to my ML App")
+st.markdown("Upload a dataset and tune hyperparameters to see how they impact the model's performance.")
+# Start fresh df for an upload option
+df = None
+features = []
+target = None
+# 1 Sidebar create Data Upload options and sample data sets
+st.sidebar.header("1. Data Input")
+# create drop down options
+data_source = st.sidebar.radio("Data Source", ["Upload CSV", "Use Sample Dataset"])
+if data_source == "Use Sample Dataset":
+    sample_choice = st.sidebar.selectbox("Choose a Sample", ["Titanic (Binary)", "Iris (Multi-class)"]) 
+    if sample_choice == "Titanic (Binary)":
+        df = sns.load_dataset('titanic')
+        # preprocessing the df
+        df = df[['survived', 'pclass', 'sex', 'age', 'sibsp', 'parch', 'fare']].dropna()
+        df['sex'] = df['sex'].map({'male': 0, 'female': 1})
+        target_default = 'survived'
+        #preprocessing second option data set
+    elif sample_choice == "Iris (Multi-class)":
+        df = sns.load_dataset('iris')
+        target_default = 'species'
+#
+else:
+    uploaded_file = st.sidebar.file_uploader("Upload your CSV file", type=["csv"])
+    if uploaded_file:
+        df = pd.read_csv(uploaded_file)
+        target_default = df.columns[-1] # Default to last column
+    else:
+        df = None

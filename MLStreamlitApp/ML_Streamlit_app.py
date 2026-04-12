@@ -34,3 +34,20 @@ else:
         target_default = df.columns[-1] # Default to last column
     else:
         df = None
+# Proceed after data set is uploaded
+if 'df' in locals() and df is not None:
+    st.write(f"### Dataset Preview: {sample_choice if data_source == 'Use Sample Dataset' else 'Uploaded File'}")
+    st.dataframe(df.head())
+    
+# Dynamic selection of features and target
+    all_cols = df.columns.tolist()
+    target = st.sidebar.selectbox("Select Target Variable", all_cols, index=all_cols.index(target_default))
+    features = st.sidebar.multiselect("Select Features", [c for c in all_cols if c != target], default=[c for c in all_cols if c != target][:3])
+
+# Import for preprocessing and training and evaluation
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report

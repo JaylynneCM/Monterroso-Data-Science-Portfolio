@@ -45,9 +45,31 @@ if 'df' in locals() and df is not None:
     features = st.sidebar.multiselect("Select Features", [c for c in all_cols if c != target], default=[c for c in all_cols if c != target][:3])
 
 # Import for preprocessing and training and evaluation
-import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+
+
+# 2. Create Model Selection 
+st.sidebar.header("2. Model Settings")
+
+# User picks the algorithm - (Classifiers)
+algorithm = st.sidebar.selectbox(
+    "Choose Algorithm", 
+    ["Logistic Regression", "Decision Tree", "KNN"]
+)
+
+# Initialize model variable
+model = None
+# Add first model Decision Tree
+if algorithm == "Decision Tree":
+    # Using max depth as slider (adjustable)
+    depth = st.sidebar.slider("Max Depth", 1, 10, 5)
+    model = DecisionTreeClassifier(max_depth=depth)
+# Add second model choice KNN
+elif algorithm == "KNN":
+    # Using 'k' as slider (adjustable)
+    k_val = st.sidebar.slider("Number of Neighbors (K)", 1, 19, 5, 2)
+    model = KNeighborsClassifier(n_neighbors=k_val)

@@ -52,24 +52,58 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 
 
-# 2. Create Model Selection 
+# 2. Create Model Selection & Descriptions for each 
 st.sidebar.header("2. Model Settings")
 
 # User picks the algorithm - (Classifiers)
 algorithm = st.sidebar.selectbox(
     "Choose Algorithm", 
-    ["Logistic Regression", "Decision Tree", "KNN"]
+    ["Logistic Regression 📈", "Decision Tree 🌲", "KNN 👥"]
 )
-
 # Initialize model variable
 model = None
 # Add first model Decision Tree
-if algorithm == "Decision Tree":
+if algorithm == "Decision Tree 🌲":
+    st.sidebar.subheader("About Decision Tree 🌲")
+    st.sidebar.write("Flows downward similar to a flow chart structure. Uses'If-Then' rules to split data into categories.")
+    
+    # Hyperparameter Explanation
+    st.sidebar.markdown("**Max Depth:**")
     # Using max depth as slider (adjustable)
-    depth = st.sidebar.slider("Max Depth", 1, 10, 5)
+    depth = st.sidebar.slider("Select Depth", 1, 10, 5)
+    st.sidebar.caption(f"A depth of {depth} means the tree can have up to {depth} levels of questions.")
+    
     model = DecisionTreeClassifier(max_depth=depth)
 # Add second model choice KNN
-elif algorithm == "KNN":
-    # Using 'k' as slider (adjustable)
-    k_val = st.sidebar.slider("Number of Neighbors (K)", 1, 19, 5, 2)
+elif algorithm == "KNN 👥":
+    st.sidebar.subheader("About KNN 👥")
+    st.sidebar.write("Classifies data by looking at the 'K' closest labeled data points.")
+    
+    # Hyperparameter Explanation
+    st.sidebar.markdown("**Number of Neighbors (K):**")
+     # Using 'k' as slider (adjustable)
+    k_val = st.sidebar.slider("Select K", 1, 19, 5, 2)
+    st.sidebar.caption(f"The model will look at the {k_val} nearest neighbors to 'vote' on the class.")
+    
     model = KNeighborsClassifier(n_neighbors=k_val)
+# Add third model choice Logistic Regression
+elif algorithm == "Logistic Regression 📈":
+    st.sidebar.subheader("About Logistic Regression 📈")
+    st.sidebar.write("Used for binary classification (Yes/No). It calculates the probability of an event occurring.")
+    
+    # Hyperparameter Explanation
+    st.sidebar.markdown("**Penalty (Regularization):**")
+        #'l2' is the standard, 'none' removes the regularization
+    pen = st.sidebar.selectbox("Choose Penalty", ["l2", "none"])
+    if pen == "l2":
+        st.sidebar.caption("L2 helps prevent overfitting by 'penalizing' large coefficients.")
+    else:
+        st.sidebar.caption("None allows the model to fit the data exactly as it is.")
+        
+    model = LogisticRegression(penalty=pen, solver='lbfgs', max_iter=1000)
+
+# Display selection status
+if model:
+    st.sidebar.success(f"Selected: {algorithm}")
+    st.write(f"### Current Model: {algorithm}")
+    st.info(f"Adjust the parameters in the sidebar to see how **{algorithm}** changes!")

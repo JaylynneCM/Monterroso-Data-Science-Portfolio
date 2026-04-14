@@ -11,7 +11,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 from sklearn.preprocessing import StandardScaler # Recommended for Logistic and KNN
 st.set_page_config(page_title="ML Exploration", layout="wide")
-st.title("Welcome to my ML App")
+st.title("🤖 Welcome to my ML App 🤖")
 st.markdown("Upload a dataset and tune hyperparameters to see how they impact the model's performance.")
 # Start an upload option
 df = None
@@ -107,10 +107,14 @@ if algorithm == "Decision Tree 🌲":
     # Hyperparameter Explanation
     st.sidebar.markdown("**Max Depth:**")
     # Using max depth as slider (adjustable)
-    depth = st.sidebar.slider("Select Depth", 1, 10, 5)
+    depth = st.sidebar.slider("Select Depth", 1, 8, 5)
     st.sidebar.caption(f"A depth of {depth} means the tree can have up to {depth} levels of questions.")
-    
-    model = DecisionTreeClassifier(max_depth=depth)
+# added additional Hyperparameter ( Avoid overfitting and complex trees): Min Samples Split
+    st.sidebar.markdown("**Min Samples Split:**")
+    min_split = st.sidebar.slider("Select Min Samples", 2, 20, 20)
+    st.sidebar.caption(f"A node must have at least {min_split} samples to be split into smaller branches.")
+    # Updated model with both parameters
+    model = DecisionTreeClassifier(max_depth=depth, min_samples_split=min_split)
 # Add second model choice KNN
 elif algorithm == "KNN 👥":
     st.sidebar.subheader("About KNN 👥")
@@ -130,8 +134,8 @@ elif algorithm == "Logistic Regression 📈":
     
     # Hyperparameter Explanation
     st.sidebar.markdown("**Penalty (Regularization):**")
-        #'l2' is the standard, 'none' removes the regularization
-    pen = st.sidebar.selectbox("Choose Penalty", ["l2", "none"])
+        #'l2' is the standard, 'None' removes the regularization
+    pen = st.sidebar.selectbox("Choose Penalty", ["l2", "None"])
     if pen == "l2":
         st.sidebar.caption("L2 helps prevent overfitting by 'penalizing' large coefficients.")
     else:
@@ -144,3 +148,41 @@ if model:
     st.sidebar.success(f"Selected: {algorithm}")
     st.write(f"### Current Model: {algorithm}")
     st.info(f"Adjust the parameters in the sidebar to see how **{algorithm}** changes!")
+    # -------------------------------------------------------------------
+# Step 4: Split, and Train, 
+# -------------------------------------------------------------------
+st.header("Step 3: Train and Evaluate")
+# Ensure data was preprocessed in Step 2 before running
+if 'X' in locals() and 'y' in locals():
+    
+    # Scaling  used for KNN and Logistic
+    use_scaling = False
+    if "KNN" in algorithm or "Logistic Regression" in algorithm:
+        st.subheader("Model Optimization")
+        use_scaling = st.checkbox(
+            "Scale Data (StandardScaler)", 
+            value=True, 
+            help="Normalizes features to have a mean of 0 and a standard deviation of 1."
+        )
+
+    #  The "Run" Button so the user can see changes after selecting data and parameters
+    if st.button("🚀 Run Model 🚀"):
+        st.divider()
+        
+        # Split the data
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+        
+        # Apply Scaling if the user selects this we apply it to train the model
+        if use_scaling:
+            scaler = StandardScaler()
+            X_train = scaler.fit_transform(X_train)
+            X_test = scaler.transform(X_test)
+            st.info("✔ **Data Scaled:** Features were transformed using StandardScaler.")
+
+        # 3. Training and Predicting
+        with st.spinner(f"Training {algorithm}..."):
+            model.fit(X_train, y_train)
+            y_pred = model.predict(X_test)
+
+        # 4. Display Results
+        st.metric(label="Overall Accuracy", value=f"{accuracy_score(y_test, y_pred):.2%}")

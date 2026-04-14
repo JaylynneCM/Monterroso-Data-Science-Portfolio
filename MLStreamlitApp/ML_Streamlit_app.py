@@ -3,14 +3,23 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
+#Scikit-Learn Imports
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier, plot_tree  # Added plot_tree for Step 6!
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+from sklearn.preprocessing import StandardScaler # Recommended for Logistic and KNN
 st.set_page_config(page_title="ML Exploration", layout="wide")
 st.title("Welcome to my ML App")
 st.markdown("Upload a dataset and tune hyperparameters to see how they impact the model's performance.")
-# Start fresh df for an upload option
+# Start an upload option
 df = None
 features = []
 target = None
-# 1 Sidebar create Data Upload options and sample data sets
+# -------------------------------------------------------------------
+# Step 1: Sidebar create Data Upload options and sample data sets
+# -------------------------------------------------------------------
 st.sidebar.header("1. Data Input")
 # create drop down options
 data_source = st.sidebar.radio("Data Source", ["Upload CSV", "Use Sample Dataset"])
@@ -34,27 +43,55 @@ else:
         target_default = df.columns[-1] # Default to last column
     else:
         df = None
-# Proceed after data set is uploaded
-if 'df' in locals() and df is not None:
+
+if df is not None:
     st.write(f"### Dataset Preview: {sample_choice if data_source == 'Use Sample Dataset' else 'Uploaded File'}")
     st.dataframe(df.head())
     
-# Dynamic selection of features and target
+    # Dynamic selection of features and target
     all_cols = df.columns.tolist()
     target = st.sidebar.selectbox("Select Target Variable", all_cols, index=all_cols.index(target_default))
     features = st.sidebar.multiselect("Select Features", [c for c in all_cols if c != target], default=[c for c in all_cols if c != target][:3])
+# -------------------------------------------------------------------
+    # Step 2: Preprocess the data 
+# -------------------------------------------------------------------
+    st.header("Step 2: Preprocess the Data")
 
-# Import for preprocessing and training and evaluation
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+    if not features:
+        st.warning("Please select at least one feature in the sidebar to continue.")
+    else:
+        # 1. Clean Missing Values
+        initial_count = len(df)
+        df_clean = df.dropna(subset=features + [target]) # only drop rows missing in selected columns
+        st.write(f"✔ **Cleaned Missing Values:** Removed {initial_count - len(df_clean)} rows.")
 
+        # 2. Define X and y
+        X = df_clean[features] 
+        y = df_clean[target]
 
-# 2. Create Model Selection & Descriptions for each 
+        # 3. Encoding Features
+        X = pd.get_dummies(X, drop_first=True)
+        st.write("✔ **Categorical Encoding:** Applied 'Drop First' to features to avoid the dummy trap.")
+
+        # 4. Target Encoding
+        if y.dtype == 'object' or y.dtype.name == 'category':
+            y = y.astype('category').cat.codes
+            st.write(f"✔ **Target Encoding:** Converted '{target}' text labels into numeric codes.")
+
+        # 5. Final Previews
+        col1, col2 = st.columns(2)
+        with col1:
+            st.write("### Features (X)")
+            st.dataframe(X.head())
+        with col2:
+            st.write("### Target (y)")
+            st.write(y.head())
+
+# -------------------------------------------------------------------
+# 3. Create Model Selection & Descriptions for each 
+# -------------------------------------------------------------------
+
 st.sidebar.header("2. Model Settings")
-
 # User picks the algorithm - (Classifiers)
 algorithm = st.sidebar.selectbox(
     "Choose Algorithm", 

@@ -25,8 +25,9 @@ To run this project locally, follow these steps using Python:
 ```
 pip install streamlit pandas numpy seaborn matplotlib scikit-learn
 ```
-3. streamlit run the py
-   For reference, this app uses the following libraries and imports
+3. Run the application: streamlit run your_app_filename.py (Make sure you replace your_app_filename.py with the actual name of your script)
+
+For reference, this app uses the following libraries and imports
    
 ```
 import streamlit as st
@@ -43,6 +44,7 @@ from sklearn.metrics import accuracy_score, confusion_matrix, classification_rep
 from sklearn.preprocessing import StandardScaler # Recommended for Logistic and KNN
 from sklearn.metrics import roc_curve, roc_auc_score
 ```
+
 # App Features: 
 The application is split into two distinct sections to guide the user in exploration:
 
@@ -70,6 +72,7 @@ Step 3: Model Selection and Hyperparameter Adjustment
 Step 4: Execution and Visual Analysis
 This app features:
 * **Confusion Matrix:** A heatmapped matrix that visually breaks down correct vs. incorrect predictions.
+
 * **ROC Curve & AUC Score:** For binary classification tasks, the app plots the Receiver Operating Characteristic curve.
 * **Classification Report:** A summary table providing Precision, Recall, and F1-Score.
 

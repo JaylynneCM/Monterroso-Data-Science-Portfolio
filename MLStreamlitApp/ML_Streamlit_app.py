@@ -24,6 +24,18 @@ if page == "ML Guide 📚":
     st.title("📚 Machine Learning Guide")
     st.markdown(" ⭐️More Information on how to interpret the models and metrics in this app. ⭐️")
     st.markdown(" ⭐️ Disclaimer: This app experiments with Classification Algorithms only! This means you cannot choose a continuous variable as your target (e.g., price or weight).")
+    # Include some info on ML such as supervised and unsupervised in a mark down 
+    st.markdown("""
+                ### 📘 Machine Learning Fundamentals
+                #### ⭐️ Supervised vs. Unsupervised Learning:
+                * **Supervised Learning:** The model is trained on **labeled data** (input-output pairs). 
+                * **Unsupervised Learning:** The model looks for **hidden patterns** or structures in data that has no labels. 
+                --- 
+                #### ⭐️ Classifiers vs. Continuous (Regression) Models
+                Supervised learning is generally split into two types:
+                * **Classification:** Predicts a **class** or category. Use this if your goal is to answer "Yes/No" or "Is this a Cat or Dog?"
+                * **Continuous (Regression):** Predicts a **specific numerical value**. Use this if your goal is to predict something like a length or price.
+                """)
     st.header("🔬 Evaluation Metrics")
     # Create descriptions for metrics 
     col1, col2 = st.columns(2)

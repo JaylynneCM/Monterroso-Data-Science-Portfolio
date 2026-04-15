@@ -262,6 +262,14 @@ else:
             plt.ylabel('Actual')
             plt.show()
             st.pyplot(fig_cm)
+            with st.expander("What does this matrix mean?"):
+                st.markdown("""
+                            The matrix shows how many predictions were correct vs. incorrect:
+                            * **Diagonal (Top-Left & Bottom-Right):** Correct predictions.
+                            * **Off-Diagonal:** Errors where the model predicted incorrect labels.
+                            
+                            *Why it matters:* Accuracy alone can be misleading (so can many other metrics). The Confusion Matrix may help us see if the  model is biased toward one specific category.
+                            """)
 
 
             # Classification Report

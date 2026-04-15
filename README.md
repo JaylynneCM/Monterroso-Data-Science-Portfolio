@@ -8,7 +8,9 @@
   - Code
 
 ## 📦 [Online Sales Data Explorer](https://github.com/JaylynneCM/Monterroso-Data-Science-Portfolio/tree/main/basic_streamlit_app)
-Tech Stack: Python, Streamlit, Pandas, Matplotlib, Seaborn
+🛠 Tech Stack:
+ 
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white) ![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white) ![Matplotlib](https://img.shields.io/badge/Matplotlib-%23ffffff.svg?style=for-the-badge&logo=Matplotlib&logoColor=black) ![Seaborn](https://img.shields.io/badge/Seaborn-%23444e91.svg?style=for-the-badge&logo=Seaborn&logoColor=white)
 
 Project Overview:
 I developed an interactive web application designed to analyze and visualize consumer behavior within a global online sales dataset. The app features a multi-tab interface that allows users to dynamically filter data by Region, Payment Method, and Product Category to understand purchasing trends.
@@ -21,7 +23,12 @@ Summary:
 - This project complements my coding skills by showing applied, user-facing data skills, and visualization skills. While my Tidy Data project shows my ability to restructure and analyze data before it faces users and is used for visualization.
 
 ## 📊 [Tidy Data Analysis: 2008 Olympic Medalists](https://github.com/JaylynneCM/Monterroso-Data-Science-Portfolio/tree/main/TidyData-Project)
-Tech Stack: Python, Pandas, Seaborn, Matplotlib
+🛠 Tech Stack: 
+
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-%23ffffff.svg?style=for-the-badge&logo=Matplotlib&logoColor=black)
+![Seaborn](https://img.shields.io/badge/Seaborn-%23444e91.svg?style=for-the-badge&logo=Seaborn&logoColor=white)
 
 🎖️Project Overview🎖️:
 This project focuses on the "Data Cleaning" aspect of data science. I transformed an "untidy" wide-format dataset containing 71 columns of Olympic medal data into a "tidy" long-format structure. By applying Hadley Wickham’s Tidy Data principles, I restructured 1,875 medalist observations which then allowed me to create a neat exploratory data analysis.

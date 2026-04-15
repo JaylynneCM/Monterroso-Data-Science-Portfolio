@@ -11,18 +11,21 @@ from sklearn.tree import DecisionTreeClassifier, plot_tree  # Added plot_tree fo
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 from sklearn.preprocessing import StandardScaler # Recommended for Logistic and KNN
-# Create page set ups
+from sklearn.metrics import roc_curve, roc_auc_score
+# Create page set ups there will be two 
 st.sidebar.title("Navigation")
 page = st.sidebar.selectbox("Go to", ["ML Exploration 🤖", "ML Guide 📚"])
 # -------------------------------------------------------------------
-# PAGE: ML GUIDE
+# PAGE: ML GUIDE - Gives descirptions and info for users
 # -------------------------------------------------------------------
 if page == "ML Guide 📚":
+    # Create title and disclaimer since I am only including classification models!
+    # using a disclaimer to preface to users that conitnous targets will NOT work
     st.title("📚 Machine Learning Guide")
     st.markdown(" ⭐️More Information on how to interpret the models and metrics in this app. ⭐️")
-    st.markdown(" ⭐️ Disclaimer: This App only experiments with Classification Algorithms!")
+    st.markdown(" ⭐️ Disclaimer: This app experiments with Classification Algorithms only! This means you cannot choose a continuous variable as your target (e.g., price or weight).")
     st.header("🔬 Evaluation Metrics")
-    
+    # Create descriptions for metrics 
     col1, col2 = st.columns(2)
     with col1:
         st.subheader("✅ Accuracy")
@@ -39,26 +42,27 @@ if page == "ML Guide 📚":
         st.write("The 'harmonic mean' of precision and recall. It tells us when one of the two is significantly lower than the other.")
 
     st.divider()
-    
+    # Create info sections for each algorithm for User just for the m to see before or after they explore
     st.header("🤖 Understanding the Algorithms")
-    
+    # Explain Logistic regression
     with st.expander("📈 Logistic Regression"):
-        st.write("Despite the name, it's for **classification**. It calculates the probability (0 to 1) that a data point belongs to a specific category.")
-        
+        st.write("This is for **classification**. It calculates the probability (0 to 1) that a data point belongs to a specific category.")
+        # Explain Decision Tree
     with st.expander("🌲 Decision Tree"):
-        st.write("A flow-chart-like structure that makes decisions based on feature values. It's highly visual and easy to explain to non-technical users.")
-        
+        st.write("A flow-chart-like structure that makes decisions based on feature values. It's highly visual and easy to follow as it flows downward")
+        # Explain KNN
     with st.expander("👥 K-Nearest Neighbors (KNN)"):
-        st.write("The 'tell me who your neighbors are' approach. It classifies a point based on the labels of the points closest to it.")
+        st.write("This alogorithm classifies a point based on the labels of the points closest to it. KNN is sensitive to the scale of the features, scaling can often lead to a substantial improvement in performance.")
 
 # -------------------------------------------------------------------
 # PAGE: ML EXPLORATION 
 # -------------------------------------------------------------------
 else:
+    # Make page name and explanation of what User can modify and what will occur
     st.title("🤖 Welcome to my ML App 🤖")
     st.markdown("Upload a dataset and tune hyperparameters to see how they impact the model's performance.")
-    st.markdown(" ⭐️ Disclaimer: This App only experiments with Classification Algorithms!")
-    # Start an upload option
+    st.markdown(" ⭐️ Disclaimer: This app experiments with Classification Algorithms only! This means you cannot choose a continuous variable as your target (e.g., price or weight).")
+    # Start with a empty df so user can select df 
     df = None
     features = []
     target = None
@@ -66,9 +70,9 @@ else:
     # Step 1: Sidebar create Data Upload options and sample data sets
     # -------------------------------------------------------------------
     st.sidebar.header("1. Data Input")
-    # create drop down options
+    # create drop down options for orgin of Data
     data_source = st.sidebar.radio("Data Source", ["Upload CSV", "Use Sample Dataset"])
-    if data_source == "Use Sample Dataset":
+    if data_source == "Use Sample Dataset": # Providing two data sets for users to experiment
         sample_choice = st.sidebar.selectbox("Choose a Sample", ["Titanic (Binary)", "Iris (Multi-class)"]) 
         if sample_choice == "Titanic (Binary)":
             df = sns.load_dataset('titanic')
@@ -82,18 +86,19 @@ else:
             target_default = 'species'
     #drop down for user uploaded data
     else:
+        # Option for user to choose their own data and upload
         uploaded_file = st.sidebar.file_uploader("Upload your CSV file", type=["csv"])
         if uploaded_file:
             df = pd.read_csv(uploaded_file)
-            target_default = df.columns[-1] # Default to last column
-        else:
+            target_default = df.columns[-1] # Default to last column but changable by user
+        else: # Means data set has not selected and will not proceed to next steps yet
             df = None
 # If user has selected data proceed to next step 
     if df is not None:
         st.write(f"### Dataset Preview: {sample_choice if data_source == 'Use Sample Dataset' else 'Uploaded File'}")
         st.dataframe(df.head())
         
-        # Dynamic selection of features and target
+        # Selection of features and target for side bar and user choice
         all_cols = df.columns.tolist()
         target = st.sidebar.selectbox("Select Target Variable", all_cols, index=all_cols.index(target_default))
         features = st.sidebar.multiselect("Select Features", [c for c in all_cols if c != target], default=[c for c in all_cols if c != target][:3])
@@ -101,15 +106,17 @@ else:
         # Step 2: Preprocess the data 
     # -------------------------------------------------------------------
         st.header("Step 2: Preprocess the Data")
-
+        # add warning to user if features not yet selected
         if not features:
             st.warning("Please select at least one feature in the sidebar to continue.")
+            # Preprocess once data is selected
         else:
             # 1. Clean Missing Values
             initial_count = len(df)
             df_clean = df.dropna(subset=features + [target]) # only drop rows missing in selected columns
+            # This will be helpful especially when csv is uploaded by user
             st.write(f"✔ **Cleaned Missing Values:** Removed {initial_count - len(df_clean)} rows.")
-
+            
             # 2. Define X and y
             X = df_clean[features] 
             y = df_clean[target]
@@ -123,7 +130,7 @@ else:
                 y = y.astype('category').cat.codes
                 st.write(f"✔ **Target Encoding:** Converted '{target}' text labels into numeric codes.")
 
-            # 5. Final Previews
+            # 5. Final Previews changes based on what the user selects
             col1, col2 = st.columns(2)
             with col1:
                 st.write("### Features (X)")
@@ -164,31 +171,31 @@ else:
     elif algorithm == "KNN 👥":
         st.sidebar.subheader("About KNN 👥")
         st.sidebar.write("Classifies data by looking at the 'K' closest labeled data points.")
-        
+
         # Hyperparameter Explanation
         st.sidebar.markdown("**Number of Neighbors (K):**")
          # Using 'k' as slider (adjustable)
         k_val = st.sidebar.slider("Select K", 1, 19, 5, 2)
         st.sidebar.caption(f"The model will look at the {k_val} nearest neighbors to 'vote' on the class.")
-        
         model = KNeighborsClassifier(n_neighbors=k_val)
     # Add third model choice Logistic Regression
     elif algorithm == "Logistic Regression 📈":
+        # Explanation of logisiticegression
         st.sidebar.subheader("About Logistic Regression 📈")
         st.sidebar.write("Used for binary classification (Yes/No). It calculates the probability of an event occurring.")
         
-        # Hyperparameter Explanation
+        # Hyperparameter 
         st.sidebar.markdown("**Penalty (Regularization):**")
             #'l2' is the standard, 'None' removes the regularization
         pen = st.sidebar.selectbox("Choose Penalty", ["l2", "None"])
         if pen == "l2":
             st.sidebar.caption("L2 helps prevent overfitting by 'penalizing' large coefficients.")
-        else:
+        else: # explanation
             st.sidebar.caption("None allows the model to fit the data exactly as it is.")
             
         model = LogisticRegression(penalty=pen if pen != "None" else None, solver='lbfgs', max_iter=1000)
 
-    # Display selection status
+    # Display selection status of user
     if model:
         st.sidebar.success(f"Selected: {algorithm}")
         st.write(f"### Current Model: {algorithm}")
@@ -230,6 +237,101 @@ else:
                 model.fit(X_train, y_train)
                 y_pred = model.predict(X_test)
 
-            # 4. Display Results
+            # -------------------------------------------------------------------
+            # Step 4: Split, and Train, 
+            # -------------------------------------------------------------------
             st.metric(label="Overall Accuracy", value=f"{accuracy_score(y_test, y_pred):.2%}")
+            st.info("Accuracy is simply Correct Predictions/Total Predictions")
+            # Confusion Matrix will appear for all models
+            st.write("### Confusion Matrix")
+            fig_cm, ax_cm = plt.subplots()
+            cm = confusion_matrix(y_test, y_pred)
+            sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', ax=ax_cm)
+            st.pyplot(fig_cm)
 
+
+            # Classification Report
+            st.divider()
+            st.write("### Classification Report")
+            st.code(classification_report(y_test, y_pred))
+
+
+            # Visualizations for each model 
+            if "Decision Tree" in algorithm:
+                   st.write("### Decision Tree Logic Visualization")
+                   fig_tree, ax_tree = plt.subplots(figsize=(15, 10))
+                   plot_tree(model, feature_names=X.columns.tolist(), filled=True, rounded=True, fontsize=10, max_depth=3)
+                   st.pyplot(fig_tree)
+                   # Provide an explanation to users on how to interpret the visualization
+                   st.info("⭐️ **How to read this graph:**")
+                   st.markdown("""
+                    **Condition (Top Line)** = The "If-Then" rule. If True, go left; if False, go right.
+                               
+                    **Gini** = The Impurity score. Lower means the node is "purer" (more of one class).
+                               
+                    **Samples** = The number of training examples that reached this specific node.
+            
+                    **Value** = The Class Distribution. Shows the count for each category.
+            
+                    **Class** = The Majority Prediction. The category this box would predict for you.
+                    """)
+            # Next visualization is for KNN       
+            elif "KNN" in algorithm:
+                   st.write("### Accuracy vs. Number of Neighbors (k)")
+                   k_values = range(1, 21, 2)
+                   accuracies = [KNeighborsClassifier(n_neighbors=k).fit(X_train, y_train).score(X_test, y_test) for k in k_values]
+                   fig_k, ax_k = plt.subplots()
+                   plt.plot(k_values, accuracies, marker='o')
+                   st.pyplot(fig_k)
+                   # Polish title to include if scaled or unscaled
+                   plt.title(f'Effect of k on Accuracy ({"Scaled" if use_scaling else "Unscaled"})')
+                   st.write("### 👥 How to Interpret the 'K' Chart")
+                   st.markdown("""
+                    This graph shows how the model's **Accuracy** changes as you adjust the number of neighbors (**k**). 
+                
+                    * The Peak: The highest point on the line represents where the model is most accurate. 
+                    * Overfitting (Low K): When **k** is very small (like 1), the model is too sensitive to "noise" or outliers in the data.
+                    * Underfitting (High K): If **k** is too large, it ignores the local patterns in the data.
+                
+                 **Try this:** Look for the **'Elbow'** or the highest stable peak, then go back to the sidebar and set your **Select K** slider to that number for the best results.
+                    """)
+            elif "Logistic Regression" in algorithm:
+            # adding ROC curve
+            # Check if it's binary classification (like Titanic) ( works best for ROC)
+                if len(np.unique(y_test)) == 2:
+                # Aesthetic to show ROC
+                    st.divider()
+                    st.write("### ROC Curve")
+                
+                        # Get the predicted probabilities for the positive class
+                    y_probs = model.predict_proba(X_test)[:, 1]
+
+                        # Calculate FPR, TPR, and thresholds
+                    fpr, tpr, thresholds = roc_curve(y_test, y_probs)
+
+                        # Compute the AUC score
+                    roc_auc = roc_auc_score(y_test, y_probs)
+                    st.write(f"**ROC AUC Score:** {roc_auc:.2f}")
+                    # Plot the ROC curve
+                    fig_roc, ax_roc = plt.subplots(figsize=(8, 6))
+                    plt.plot(fpr, tpr, lw=2, label=f'ROC Curve (AUC = {roc_auc:.2f})')
+                    plt.plot([0, 1], [0, 1], lw=2, linestyle='--', label='Random Guess') 
+                    # Polish the graph 
+                    plt.xlabel('False Positive Rate')
+                    plt.ylabel('True Positive Rate')
+                    plt.title('Receiver Operating Characteristic (ROC) Curve')
+                    plt.legend(loc="lower right")
+                
+                    st.pyplot(fig_roc)
+                    # ROC explanation 
+                    st.write("### 📖 How to understand the ROC Curve")
+                    st.markdown("""
+                    The **ROC (Receiver Operating Characteristic)** curve helps evaluate the model's performance across different classification thresholds:
+
+                    * **ROC Curve** = Plots the True Positive Rate against the False Positive Rate (how many 'false alarms' we had).
+                    * **AUC (Area Under the Curve)** = Summarizes the overall ability of the model to tell the two classes apart. 
+                
+                    **A score of 1.0 is perfect, while 0.5 means the model is just guessing!**
+                    """)
+            else:
+                st.info("Awaiting data preprocessing. Please select features and target to begin.")

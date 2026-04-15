@@ -335,3 +335,10 @@ else:
                     """)
             else:
                 st.info("Awaiting data preprocessing. Please select features and target to begin.")
+            # Encourage users to explore more in final text on page 
+            st.subheader("🔎 Keep Exploring!🔎")
+            st.markdown("""
+                        **Continue to Explore! See how the model shifts, under different parameters**
+                        * **Check the Guide:** Head over to the **ML Guide 📚** page in the sidebar to learn more about metrics used and ML!
+                        * **Adjust Hyperparameters:** in the sidebar to see how the charts change.
+                        """)

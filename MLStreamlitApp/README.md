@@ -21,6 +21,7 @@ To run this project locally, follow these steps using Python:
 # App Features: 
 
 # Visual Examples: 
+<img width="1252" height="868" alt="Screenshot 2026-04-14 at 5 51 52 PM" src="https://github.com/user-attachments/assets/c1dfc603-d6b1-4864-90e8-4bdde199d0a6" />
 
 # References: 
 - [Streamlit Cheat Sheet](https://cheat-sheet.streamlit.app/)

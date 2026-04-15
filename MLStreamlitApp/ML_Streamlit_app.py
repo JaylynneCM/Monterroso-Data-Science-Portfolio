@@ -248,6 +248,12 @@ else:
             cm = confusion_matrix(y_test, y_pred)
             sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', ax=ax_cm)
             st.pyplot(fig_cm)
+            # Add labels for presentation
+            plt.title('Confusion Matrix')
+            plt.xlabel('Predicted')
+            plt.ylabel('Actual')
+            plt.show()
+
 
 
             # Classification Report

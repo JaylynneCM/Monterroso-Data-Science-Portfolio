@@ -16,7 +16,7 @@ The project aims to communicate results clearly with evaluation metrics.
 - **Visuals**: It generates charts to provide a visual story of how well the model is performing on the selected data.
 
 # Instructions📋: 
-This app is deployed and can be found here.
+[This app is deployed and can be found here.](https://monterroso-data-science-portfolio-iejktw4brpvieukayueda5.streamlit.app/)
 
 To run this project locally, follow these steps using Python:
 

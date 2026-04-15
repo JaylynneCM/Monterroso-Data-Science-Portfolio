@@ -6,6 +6,7 @@ The goal of this project is to provide an interactive, web-based platform for su
 ### The primary objective of this project is divided into two key goals:
 
 ## - 🥇 First Goal: Interactive Model Training & Hyperparameter Tuning
+The project aims to encourage model training, exploration, and learning. 
 - **User Input**: Users can upload CSV files or choose from provided sample datasets.
 - **Tuning**: Users utilize Streamlit widgets (sliders, dropdowns) to adjust parameters such as the 'K' in KNN or the depth of a Decision Tree.
 
@@ -64,7 +65,7 @@ Step 3: Model Selection and Hyperparameter Adjustment
 * **Dynamic Tuning:** Hyperparameters can be adjusted, which will depend on the model selected:
     1. **KNN 👥** — Users can change the **Number of Neighbors (K)** to see how local data clusters influence classification.
     2. **Decision Tree 🌲** — Users can adjust **Max Depth** and **Min Samples Split** to balance model complexity and prevent the tree from overfitting.
-    3. **Logistic Regression 📈** — Users can choose to add **Regularization (Penalty)** to see how penalizing large coefficients changes the model's stability and predictions.
+    3. **Logistic Regression 📈** — Users can choose to add **Regularization (Penalty)** to see how penalizing large coefficients changes the model's predictions.
 
 Step 4: Execution and Visual Analysis
 This app features:

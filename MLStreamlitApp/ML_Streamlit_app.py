@@ -236,10 +236,7 @@ else:
             with st.spinner(f"Training {algorithm}..."):
                 model.fit(X_train, y_train)
                 y_pred = model.predict(X_test)
-
-            # -------------------------------------------------------------------
-            # Step 4: Split, and Train, 
-            # -------------------------------------------------------------------
+            # EVALUATIONS
             st.metric(label="Overall Accuracy", value=f"{accuracy_score(y_test, y_pred):.2%}")
             st.info("Accuracy is simply Correct Predictions/Total Predictions")
             # Confusion Matrix will appear for all models
@@ -247,13 +244,12 @@ else:
             fig_cm, ax_cm = plt.subplots()
             cm = confusion_matrix(y_test, y_pred)
             sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', ax=ax_cm)
-            st.pyplot(fig_cm)
             # Add labels for presentation
             plt.title('Confusion Matrix')
             plt.xlabel('Predicted')
             plt.ylabel('Actual')
             plt.show()
-
+            st.pyplot(fig_cm)
 
 
             # Classification Report
@@ -340,7 +336,7 @@ else:
                     **A score of 1.0 is perfect, while 0.5 means the model is just guessing!**
                     """)
             else:
-                st.info("Awaiting data preprocessing. Please select features and target to begin.")
+                st.info("Waiting for data preprocessing. Please select features and target to begin.")
             # Encourage users to explore more in final text on page 
             st.subheader("🔎 Keep Exploring!🔎")
             st.markdown("""

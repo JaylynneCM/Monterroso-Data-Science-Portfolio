@@ -17,7 +17,7 @@ with col1:
         st.write(' Photo by Shutter Speed on Unsplash')
     
 # Load CSV data file
-df = pd.read_csv("basic_streamlit_app/data/Online_Sales_Data.csv")
+df = pd.read_csv("data/Online_Sales_Data.csv")
 # Brief explanation of Dashboard
 st.markdown(
     """

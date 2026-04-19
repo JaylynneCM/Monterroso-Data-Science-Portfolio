@@ -7,7 +7,7 @@ st.title("💻 Online Sales Analysis 💻")
 
 # Image for Project 
 st.image(
-    "basic_streamlit_app/Images/shutter-speed-BQ9usyzHx_w-unsplash.jpg",
+    "Images/shutter-speed-BQ9usyzHx_w-unsplash.jpg",
     width=400
 )
 col1, col2  = st.columns(2)

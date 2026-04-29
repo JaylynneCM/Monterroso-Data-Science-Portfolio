@@ -12,7 +12,7 @@
  
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white) ![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white) ![Matplotlib](https://img.shields.io/badge/Matplotlib-%23ffffff.svg?style=for-the-badge&logo=Matplotlib&logoColor=black) ![Seaborn](https://img.shields.io/badge/Seaborn-%23444e91.svg?style=for-the-badge&logo=Seaborn&logoColor=white)
 
-Project Overview:
+🎖️Project Overview🎖️:
 I developed an interactive web application designed to analyze and visualize consumer behavior within a global online sales dataset. The app features a multi-tab interface that allows users to dynamically filter data by Region, Payment Method, and Product Category to understand purchasing trends.
 
 ⭐️ Key Features:

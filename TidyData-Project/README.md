@@ -1,4 +1,5 @@
-# 🎖️Project Overview🎖️: 
+# ⛹️‍♀️ Tidy Data Project ⛷️
+## 🎖️Project Overview🎖️: 
 The dataset I am using contains records of 2008 Olympic medalists, but it is structured in a "wide" format.
 - Structure: Each row represents an individual athlete, but the table contains 71 columns where the variables Gender and Sport are combined within the column headers (male_rowing, female_swimming, etc). These columns indicate the "tier" of the medal won (Gold, Silver, or Bronze) as a cell value. Because an athlete only wins a medal in their specific sport, this results with unnecessary NaN (empty) values for many of the cells.
 

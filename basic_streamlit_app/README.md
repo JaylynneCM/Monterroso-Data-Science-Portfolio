@@ -8,15 +8,21 @@ Structure: The data includes variables such as Product Category, Units Sold, Tot
 The project aims to provide a deep dive into online consumer behavior, such as trends, through interactive data exploration
 I created an interactive Streamlit app for exploring consumer behavior in an online sales dataset. This is done through filtering based on region, payment method, and product category.
 
-## Instructions📋:
+# Instructions📋:
 1. Install streamlit
 2. Use this code snippet
 ````
 streamlit run basic_streamlit_app/main.py
 ````
-## Dataset Description📈:
+# Dataset Description📈:
+This dataset is adapted from [Kaggle: Online Sales Dataset - Popular Marketplace Data.](https://www.kaggle.com/datasets/shreyanshverma27/online-sales-dataset-popular-marketplace-data)
+1. Feature Count: This dataset consists of 9 columns covering transaction details, product info, and geographical data.
 
-## App Features:
+2. Temporal Range: The records span from December 31, 2023, to August 26, 2024, allowing for multi-quarter trend analysis.
+
+3. Transaction Volume: Includes unique records with Transaction IDs ranging from 10,001 to 10,240.
+
+# App Features:
  I structured the app in three tabs with ways to access visualizations.
 * 🔍 Dataset Exploration (To get an understanding of the dataset)
 * 🛒 Customer Purchasing Behavior (Understand customer Regional insights)
@@ -28,7 +34,7 @@ I used:
 * Matplotlib & Seaborn: For creating data visualizations and charts.
 
 
-# Visualizations 
+# Visualizations: 
 
 <img width="705" height="359" alt="Screenshot 2026-04-20 at 6 33 24 PM" src="https://github.com/user-attachments/assets/2082ff3b-e323-460e-a238-67181f5a595b" />
 
